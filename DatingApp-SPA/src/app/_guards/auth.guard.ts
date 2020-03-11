@@ -9,12 +9,13 @@ import { AuthService } from '../_services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(): boolean {
-    if(this.authService.loggedIn())
-    {
+    if (this.authService.loggedIn()) {
+
       return true;
     }
-   
+
     console.log('You shall not pass!!!');
-  }
+    this.router.navigate(['/home']);
+    return false;
 
 }
